@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerFit Elite - Premium Personal Performance Coaching</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidian: {
+                            50: '#f4f4f5',
+                            900: '#09090b',
+                            950: '#040405',
+                        },
+                        neonvolt: {
+                            400: '#e1ff33',
+                            500: '#ccff00',
+                            600: '#b2e600',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(18, 18, 24, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 30px rgba(204, 255, 0, 0.15);
+        }
+
+        .glow-hover:hover {
+            box-shadow: 0 0 40px rgba(204, 255, 0, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* Smooth scroll track */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ccff00;
+        }
+    </style>
+</head>
+<body class="bg-obsidian-950 text-neutral-100 font-sans antialiased overflow-x-hidden">
+
+    <!-- Global Header -->
+    <header id="global-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 py-5 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-lg bg-neonvolt-500 flex items-center justify-center text-obsidian-950 font-display font-bold text-xl glow-effect transition-transform group-hover:scale-105">
+                    P
+                </div>
+                <span class="font-display font-bold text-xl tracking-tight text-white uppercase">
+                    Power<span class="text-neonvolt-500">Fit</span>
+                </span>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#features" class="text-sm font-medium text-neutral-400 hover:text-neonvolt-500 transition-colors">Program Specs</a>
+                <a href="#interactive-preview" class="text-sm font-medium text-neutral-400 hover:text-neonvolt-500 transition-colors">Dashboard Preview</a>
+                <a href="#estimator" class="text-sm font-medium text-neutral-400 hover:text-neonvolt-500 transition-colors">Assessment</a>
+                <a href="#pricing" class="text-sm font-medium text-neutral-400 hover:text-neonvolt-500 transition-colors">Memberships</a>
+                <a href="#consultation" class="text-sm font-medium text-neutral-400 hover:text-neonvolt-500 transition-colors">Inquire</a>
+                <a href="#faq" class="text-sm font-medium text-neutral-400 hover:text-neonvolt-500 transition-colors">Support FAQ</a>
+            </nav>
+
+            <!-- CTA Actions -->
+            <div class="flex items-center gap-4">
+                <a href="#pricing" class="hidden sm:inline-flex px-5 py-2.5 rounded-lg bg-neonvolt-500 hover:bg-neonvolt-600 text-obsidian-950 font-bold text-sm uppercase tracking-wider glow-hover transition-all duration-300">
+                    Apply Now
+                </a>
+                <!-- Mobile Navigation Toggle -->
+                <button id="mobile-toggle" class="p-2 text-neutral-400 hover:text-white md:hidden focus:outline-none" aria-label="Toggle Mobile Menu">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Overlay -->
+        <div id="mobile-drawer" class="fixed inset-y-0 right-0 w-64 bg-obsidian-900 border-l border-neutral-800 z-50 p-6 shadow-2xl translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+            <div class="flex justify-between items-center mb-10">
+                <span class="font-display font-bold text-lg text-white uppercase">Menu</span>
+                <button id="mobile-close" class="text-neutral-400 hover:text-white" aria-label="Close Mobile Menu">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col gap-6">
+                <a href="#features" class="text-base font-medium text-neutral-300 hover:text-neonvolt-500 transition-colors mobile-link">Program Specs</a>
+                <a href="#interactive-preview" class="text-base font-medium text-neutral-300 hover:text-neonvolt-500 transition-colors mobile-link">Dashboard Preview</a>
+                <a href="#estimator" class="text-base font-medium text-neutral-300 hover:text-neonvolt-500 transition-colors mobile-link">Assessment</a>
+                <a href="#pricing" class="text-base font-medium text-neutral-300 hover:text-neonvolt-500 transition-colors mobile-link">Memberships</a>
+                <a href="#consultation" class="text-base font-medium text-neutral-300 hover:text-neonvolt-500 transition-colors mobile-link">Inquire</a>
+                <a href="#faq" class="text-base font-medium text-neutral-300 hover:text-neonvolt-500 transition-colors mobile-link">Support FAQ</a>
+                <a href="#pricing" class="w-full text-center py-3 rounded-lg bg-neonvolt-500 text-obsidian-950 font-bold uppercase tracking-wider mt-4 block mobile-link">Apply Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen pt-32 pb-20 px-6 md:px-12 flex items-center overflow-hidden">
+        <!-- Abstract gradient spotlights -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-neonvolt-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-emerald-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center relative z-10">
+            <!-- Left Info Column -->
+            <div class="lg:col-span-6 space-y-8 text-center lg:text-left">
+                <!-- Premium Dynamic Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-neutral-900/80 border border-neutral-800 text-xs text-neutral-300 font-semibold tracking-wider uppercase">
+                    <span class="w-2 h-2 rounded-full bg-neonvolt-500 animate-pulse"></span>
+                    Now accepting 15 Elite Applicants
+                </div>
+
+                <!-- High-Conversion Headings -->
+                <h1 class="font-display font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-none">
+                    Forge Your <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-neonvolt-500 to-emerald-400">
+                        Ultimate Physique
+                    </span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-neutral-400 max-w-xl mx-auto lg:mx-0">
+                    Bespoke athletic biomechanics, elite physical profiling, and high-touch dynamic accountability engineered for high-performers seeking peak operational health.
+                </p>
+
+                <!-- Interactive CTA Button Trio -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center">
+                    <a href="#pricing" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-neonvolt-500 hover:bg-neonvolt-600 text-obsidian-950 font-extrabold text-base uppercase tracking-wider glow-hover transition-all duration-300 flex items-center justify-center gap-2">
+                        <span>Get Started Today</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="#interactive-preview" class="w-full sm:w-auto px-8 py-4 rounded-xl border border-neutral-800 hover:border-neutral-700 bg-neutral-900/40 text-neutral-300 hover:text-white font-bold text-base tracking-wider transition-all duration-300 flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-play text-xs text-neonvolt-500"></i>
+                        <span>See How It Works</span>
+                    </a>
+                </div>
+
+                <!-- Social Proof Metrics -->
+                <div class="pt-6 border-t border-neutral-900/80 flex flex-col sm:flex-row gap-6 items-center justify-center lg:justify-start">
+                    <div class="flex -space-x-3">
+                        <img src="https://placehold.co/100x100/18181b/a1a1aa?text=M1" alt="Athlete Face Mock" class="w-10 h-10 rounded-full border-2 border-obsidian-950 object-cover" onerror="this.src='https://placehold.co/100x100/18181b/ffffff?text=U1'">
+                        <img src="https://placehold.co/100x100/18181b/a1a1aa?text=M2" alt="Athlete Face Mock" class="w-10 h-10 rounded-full border-2 border-obsidian-950 object-cover" onerror="this.src='https://placehold.co/100x100/18181b/ffffff?text=U2'">
+                        <img src="https://placehold.co/100x100/18181b/a1a1aa?text=M3" alt="Athlete Face Mock" class="w-10 h-10 rounded-full border-2 border-obsidian-950 object-cover" onerror="this.src='https://placehold.co/100x100/18181b/ffffff?text=U3'">
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <div class="flex items-center justify-center sm:justify-start gap-1">
+                            <i class="fa-solid fa-star text-neonvolt-500 text-xs"></i>
+                            <i class="fa-solid fa-star text-neonvolt-500 text-xs"></i>
+                            <i class="fa-solid fa-star text-neonvolt-500 text-xs"></i>
+                            <i class="fa-solid fa-star text-neonvolt-500 text-xs"></i>
+                            <i class="fa-solid fa-star text-neonvolt-500 text-xs"></i>
+                            <span class="text-sm font-bold text-white ml-1">4.9/5</span>
+                        </div>
+                        <p class="text-xs text-neutral-500">Trusted by 4,200+ global athletes and entrepreneurs</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column - Interactive Client Dashboard Preview Mock -->
+            <div id="interactive-preview" class="lg:col-span-6 w-full max-w-xl mx-auto">
+                <div class="glass-panel rounded-2xl overflow-hidden p-6 shadow-2xl relative">
+                    <!-- Glass highlight card top header -->
+                    <div class="flex items-center justify-between mb-6 pb-4 border-b border-neutral-800">
+                        <div class="flex items-center gap-3">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                            <span class="text-xs font-semibold tracking-wider text-neutral-500 uppercase ml-1">Client Portal (Live Mockup)</span>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 rounded bg-emerald-500/10 text-emerald-400 font-bold tracking-widest uppercase">Verified System</span>
+                    </div>
+
+                    <!-- Live Tab Switches -->
+                    <div class="grid grid-cols-3 gap-2 mb-6">
+                        <button id="tab-progress" class="py-2.5 px-3 rounded-lg text-xs font-bold uppercase tracking-wider text-obsidian-950 bg-neonvolt-500 transition-all focus:outline-none tab-btn">
+                            Progress
+                        </button>
+                        <button id="tab-workouts" class="py-2.5 px-3 rounded-lg text-xs font-bold uppercase tracking-wider text-neutral-400 bg-neutral-900/60 hover:text-white transition-all focus:outline-none tab-btn">
+                            Workouts
+                        </button>
+                        <button id="tab-macros" class="py-2.5 px-3 rounded-lg text-xs font-bold uppercase tracking-wider text-neutral-400 bg-neutral-900/60 hover:text-white transition-all focus:outline-none tab-btn">
+                            Macros
+                        </button>
+                    </div>
+
+                    <!-- Interactive Content Areas -->
+                    <div class="min-h-[220px]">
+                        <!-- Dynamic View 1: Progress (Default) -->
+                        <div id="view-progress" class="tab-view space-y-4">
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-4">
+                                    <span class="text-xs text-neutral-500 uppercase font-semibold">Active Weight</span>
+                                    <p class="text-2xl font-display font-extrabold text-white mt-1">74.2 <span class="text-xs text-neutral-400 font-normal">kg</span></p>
+                                    <span class="text-[10px] text-emerald-400 flex items-center gap-1 mt-1 font-bold">
+                                        <i class="fa-solid fa-arrow-trend-down"></i> -3.8 kg current phase
+                                    </span>
+                                </div>
+                                <div class="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-4">
+                                    <span class="text-xs text-neutral-500 uppercase font-semibold">Lean Muscle Mass</span>
+                                    <p class="text-2xl font-display font-extrabold text-white mt-1">62.8 <span class="text-xs text-neutral-400 font-normal">kg</span></p>
+                                    <span class="text-[10px] text-neonvolt-400 flex items-center gap-1 mt-1 font-bold">
+                                        <i class="fa-solid fa-arrow-trend-up"></i> +1.5% lean index
+                                    </span>
+                                </div>
+                            </div>
+                            
+                            <!-- Mini interactive dynamic SVG Chart -->
+                            <div class="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-4">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs text-neutral-400 uppercase font-bold">Structural Fat Loss Curve</span>
+                                    <span class="text-[10px] text-neutral-500">6 Week Tracking</span>
+                                </div>
+                                <svg class="w-full h-24 stroke-neonvolt-500 fill-none" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M 10 90 Q 80 80, 150 45 T 290 30 T 390 15" stroke-width="3" stroke-linecap="round"/>
+                                    <circle cx="390" cy="15" r="4" fill="#ccff00"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic View 2: Workouts (Hidden on load) -->
+                        <div id="view-workouts" class="tab-view space-y-3 hidden">
+                            <div class="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-3 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-neonvolt-500/10 flex items-center justify-center text-neonvolt-500 text-sm">
+                                        <i class="fa-solid fa-dumbbell"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">Compound Push Intensity</h4>
+                                        <p class="text-[10px] text-neutral-500">Targeting Chest, Delts, Triceps</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-neonvolt-500/10 text-neonvolt-400 font-bold">Phase A</span>
+                            </div>
+
+                            <div class="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-3 flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded bg-blue-500/10 flex items-center justify-center text-blue-400 text-sm">
+                                        <i class="fa-solid fa-person-running"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-xs font-bold text-white">HIIT Metabolic Conditioning</h4>
+                                        <p class="text-[10px] text-neutral-500">Post-Strength Fatigue Phase</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-bold">12 Mins</span>
+                            </div>
+
+                            <div class="p-3 bg-neonvolt-500/5 rounded-xl border border-neonvolt-500/20 text-center">
+                                <span class="text-[10px] text-neutral-400">Coach's Biomechanical feedback note:</span>
+                                <p class="text-xs font-semibold text-neonvolt-400 mt-1">"Slow down the eccentric phase on Set 3 lateral raises."</p>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic View 3: Macros (Hidden on load) -->
+                        <div id="view-macros" class="tab-view space-y-4 hidden">
+                            <div class="grid grid-cols-3 gap-3">
+                                <div class="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-3 text-center">
+                                    <span class="text-[10px] text-neutral-500 uppercase font-bold">Protein</span>
+                                    <p class="text-base font-bold text-white mt-1">185g</p>
+                                    <span class="text-[9px] text-neutral-400">Build Target</span>
+                                </div>
+                                <div class="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-3 text-center">
+                                    <span class="text-[10px] text-neutral-500 uppercase font-bold">Carbs</span>
+                                    <p class="text-base font-bold text-white mt-1">210g</p>
+                                    <span class="text-[9px] text-neutral-400">Metabolic Fuel</span>
+                                </div>
+                                <div class="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-3 text-center">
+                                    <span class="text-[10px] text-neutral-500 uppercase font-bold">Fats</span>
+                                    <p class="text-base font-bold text-white mt-1">65g</p>
+                                    <span class="text-[9px] text-neutral-400">Hormonal Base</span>
+                                </div>
+                            </div>
+
+                            <!-- Circular Progress visualization using Tailwind -->
+                            <div class="bg-neutral-900/40 border border-neutral-800/60 rounded-xl p-4 flex items-center justify-between">
+                                <div class="space-y-1">
+                                    <span class="text-xs text-neutral-400 uppercase font-bold">Daily Calorie Target</span>
+                                    <p class="text-lg font-bold text-white">2,165 <span class="text-xs text-neutral-500">kcal</span></p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="w-3 h-3 rounded-full bg-neonvolt-500"></span>
+                                    <span class="text-xs text-neutral-300 font-bold">Macro Targets Locked</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Value Pillars Section -->
+    <section id="features" class="py-24 px-6 md:px-12 bg-neutral-900/40 border-y border-neutral-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center space-y-4 mb-16">
+                <span class="text-xs font-bold tracking-widest text-neonvolt-500 uppercase">Scientific Protocol</span>
+                <h2 class="font-display font-bold text-3xl md:text-4xl text-white">Engineered for Transformation</h2>
+                <p class="text-sm md:text-base text-neutral-400 max-w-xl mx-auto">
+                    We ignore generic templates. Our process is highly individualized, structured around baseline physical screening data and continuous bio-feedback loops.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature Card 1 -->
+                <div class="glass-panel rounded-2xl p-8 space-y-6 transition-all duration-300 hover:border-neutral-700/60 group">
+                    <div class="w-12 h-12 rounded-xl bg-neonvolt-500/10 flex items-center justify-center text-neonvolt-500 text-xl transition-colors group-hover:bg-neonvolt-500 group-hover:text-obsidian-950">
+                        <i class="fa-solid fa-calculator"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white">Data-Driven Profiling</h3>
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        We begin with advanced metabolic calculations, structural mobility screenings, and lifestyle analysis to map out your metabolic baseline perfectly.
+                    </p>
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="glass-panel rounded-2xl p-8 space-y-6 transition-all duration-300 hover:border-neutral-700/60 group">
+                    <div class="w-12 h-12 rounded-xl bg-neonvolt-500/10 flex items-center justify-center text-neonvolt-500 text-xl transition-colors group-hover:bg-neonvolt-500 group-hover:text-obsidian-950">
+                        <i class="fa-solid fa-dumbbell"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white">Biomechanical Precision</h3>
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        Every exercise assignment includes strict form metrics. Submit video captures of structural lifts for video feedback and critique.
+                    </p>
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="glass-panel rounded-2xl p-8 space-y-6 transition-all duration-300 hover:border-neutral-700/60 group">
+                    <div class="w-12 h-12 rounded-xl bg-neonvolt-500/10 flex items-center justify-center text-neonvolt-500 text-xl transition-colors group-hover:bg-neonvolt-500 group-hover:text-obsidian-950">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="font-display font-bold text-xl text-white">Continuous Co-Programming</h3>
+                    <p class="text-sm text-neutral-400 leading-relaxed">
+                        Plans aren't static. We adjust training volume and dynamic nutritional frameworks weekly according to recovery metrics, sleep indexes, and stress markers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Estimator Section -->
+    <section id="estimator" class="py-24 px-6 md:px-12 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neonvolt-500/5 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left column describing tool -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs font-bold tracking-widest text-neonvolt-500 uppercase">Assessment Suite</span>
+                    <h2 class="font-display font-bold text-3xl md:text-4xl text-white leading-tight">
+                        Calculate Your <br>Metabolic Baseline
+                    </h2>
+                    <p class="text-sm md:text-base text-neutral-400">
+                        Interact with our metabolic engine to estimate your baseline parameters. Your personal performance coach will use these markers to blueprint your dietary benchmarks.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full bg-neonvolt-500/15 flex items-center justify-center text-[10px] text-neonvolt-500 mt-1">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span class="text-sm text-neutral-300 font-medium">Determines estimated target caloric intake limits</span>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-5 h-5 rounded-full bg-neonvolt-500/15 flex items-center justify-center text-[10px] text-neonvolt-500 mt-1">
+                                <i class="fa-solid fa-check"></i>
+                            </div>
+                            <span class="text-sm text-neutral-300 font-medium">Assesses structural body mass indicators</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive assessment widget -->
+                <div class="lg:col-span-7">
+                    <div class="glass-panel rounded-2xl p-6 md:p-8 shadow-2xl space-y-6">
+                        <h3 class="text-lg font-display font-bold text-white uppercase tracking-wider">Physique Parameter Slider</h3>
+                        
+                        <div class="space-y-6">
+                            <!-- Slider 1: Weight -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center text-sm font-semibold">
+                                    <label for="slider-weight" class="text-neutral-400 uppercase">Bodyweight (kg)</label>
+                                    <span id="weight-display" class="text-neonvolt-500 text-lg font-bold">75 kg</span>
+                                </div>
+                                <input type="range" id="slider-weight" min="40" max="150" value="75" class="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-neonvolt-500">
+                            </div>
+
+                            <!-- Slider 2: Height -->
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center text-sm font-semibold">
+                                    <label for="slider-height" class="text-neutral-400 uppercase">Height (cm)</label>
+                                    <span id="height-display" class="text-neonvolt-500 text-lg font-bold">175 cm</span>
+                                </div>
+                                <input type="range" id="slider-height" min="120" max="220" value="175" class="w-full h-1.5 bg-neutral-800 rounded-lg appearance-none cursor-pointer accent-neonvolt-500">
+                            </div>
+
+                            <!-- Dropdown: Activity multiplier -->
+                            <div class="space-y-2">
+                                <label for="activity-multiplier" class="text-sm font-semibold text-neutral-400 uppercase block">Daily Activity Multiplier</label>
+                                <select id="activity-multiplier" class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3.5 text-sm text-neutral-300 focus:border-neonvolt-500 focus:outline-none">
+                                    <option value="1.2">Sedentary (Minimal Activity)</option>
+                                    <option value="1.375" selected>Moderately Active (3-4 Training Days)</option>
+                                    <option value="1.55">Highly Active (5+ Heavy Training Days)</option>
+                                    <option value="1.725">Extreme Operational Volume (Elite Competitors)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Real-time outputs box -->
+                        <div class="bg-neutral-900/80 border border-neutral-800 rounded-xl p-5 grid grid-cols-1 sm:grid-cols-2 gap-6 relative">
+                            <!-- Dynamic BMI -->
+                            <div class="space-y-1">
+                                <span class="text-xs text-neutral-500 uppercase font-bold">Calculated BMI Indicator</span>
+                                <div class="text-3xl font-display font-extrabold text-neonvolt-500" id="assessment-bmi">24.5</div>
+                                <span class="text-xs font-semibold text-neutral-300 uppercase tracking-wider" id="assessment-class">Normal Weight Range</span>
+                            </div>
+
+                            <!-- Dynamic Caloric Benchmarks -->
+                            <div class="space-y-1 sm:border-l sm:border-neutral-800 sm:pl-6">
+                                <span class="text-xs text-neutral-500 uppercase font-bold">Estimated Baseline TDEE</span>
+                                <div class="text-3xl font-display font-extrabold text-white" id="assessment-calories">2,480 <span class="text-xs text-neutral-400 font-normal">kcal</span></div>
+                                <span class="text-xs text-neutral-400 block">Required daily calorie ceiling</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing and Admissions Section -->
+    <section id="pricing" class="py-24 px-6 md:px-12 bg-neutral-900/20 border-y border-neutral-900">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center space-y-4 mb-16">
+                <span class="text-xs font-bold tracking-widest text-neonvolt-500 uppercase">Admissions Tiers</span>
+                <h2 class="font-display font-bold text-3xl md:text-4xl text-white">Select Your Pipeline</h2>
+                <p class="text-sm md:text-base text-neutral-400 max-w-xl mx-auto">
+                    Limited active slots are carefully maintained to ensure every client receives absolute attention to detail.
+                </p>
+
+                <!-- Billing Switcher -->
+                <div class="flex items-center justify-center gap-4 pt-4">
+                    <span class="text-sm font-semibold text-neutral-400" id="billing-monthly-label">Monthly Billing</span>
+                    <button id="billing-switch" class="w-14 h-8 rounded-full bg-neutral-800 p-1 relative flex items-center transition-colors focus:outline-none" aria-label="Toggle Billing Interval">
+                        <span id="billing-switch-toggle" class="w-6 h-6 rounded-full bg-neonvolt-500 transition-transform duration-300 transform translate-x-0"></span>
+                    </button>
+                    <span class="text-sm font-semibold text-neutral-400" id="billing-yearly-label">
+                        Yearly Billing <span class="text-xs px-2 py-0.5 rounded bg-neonvolt-500/10 text-neonvolt-400 font-bold ml-1">Save 20%</span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Plan Card 1: Performance -->
+                <div class="glass-panel rounded-2xl p-8 relative flex flex-col justify-between transition-all duration-300 hover:border-neutral-700/60">
+                    <div class="space-y-6">
+                        <div class="space-y-2">
+                            <h3 class="font-display font-bold text-2xl text-white">Performance Core</h3>
+                            <p class="text-sm text-neutral-400">Structured coaching designed for dedicated individuals ready for change.</p>
+                        </div>
+                        <div class="text-4xl font-display font-extrabold text-neonvolt-500 flex items-baseline">
+                            $<span id="price-tier1" class="transition-all duration-300">149</span>
+                            <span class="text-xs text-neutral-500 font-normal ml-2">/ month</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-neutral-300 border-t border-neutral-800/80 pt-6">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-neonvolt-500 text-xs"></i>
+                                Custom Weekly Training Program
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-neonvolt-500 text-xs"></i>
+                                Tailored Metabolic Nutrition Macros
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-neonvolt-500 text-xs"></i>
+                                Bi-weekly Formal Progress Reviews
+                            </li>
+                            <li class="flex items-center gap-3 text-neutral-500">
+                                <i class="fa-solid fa-xmark text-xs"></i>
+                                Video Form Analysis Feedback
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#consultation" class="w-full text-center py-4 rounded-xl border border-neutral-800 hover:border-neutral-700 hover:text-white bg-neutral-900/40 text-neutral-300 text-sm uppercase tracking-wider font-bold mt-8 transition-all">
+                        Apply for Performance
+                    </a>
+                </div>
+
+                <!-- Plan Card 2: Elite Athlete (Featured) -->
+                <div class="glass-panel rounded-2xl p-8 relative flex flex-col justify-between border-neonvolt-500/40 glow-effect transition-all duration-300 hover:border-neonvolt-500">
+                    <span class="absolute -top-3.5 right-6 px-3 py-1 bg-neonvolt-500 text-obsidian-950 text-[10px] font-extrabold uppercase tracking-widest rounded-full shadow-lg">
+                        Highly Demanded
+                    </span>
+                    <div class="space-y-6">
+                        <div class="space-y-2">
+                            <h3 class="font-display font-bold text-2xl text-white">Elite Athlete</h3>
+                            <p class="text-sm text-neutral-400">The premier, high-touch metabolic system. Completely custom biomechanics.</p>
+                        </div>
+                        <div class="text-4xl font-display font-extrabold text-neonvolt-500 flex items-baseline">
+                            $<span id="price-tier2" class="transition-all duration-300">299</span>
+                            <span class="text-xs text-neutral-500 font-normal ml-2">/ month</span>
+                        </div>
+                        <ul class="space-y-4 text-sm text-neutral-300 border-t border-neutral-800/80 pt-6">
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-neonvolt-500 text-xs"></i>
+                                Weekly Dynamic Plan Modifications
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-neonvolt-500 text-xs"></i>
+                                Full Meal-by-Meal Nutrition Guide
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-neonvolt-500 text-xs"></i>
+                                Real-time Lifting Form video analysis
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fa-solid fa-check text-neonvolt-500 text-xs"></i>
+                                Direct WhatsApp Access to Master Coach
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#consultation" class="w-full text-center py-4 rounded-xl bg-neonvolt-500 hover:bg-neonvolt-600 text-obsidian-950 text-sm uppercase tracking-wider font-extrabold mt-8 transition-all duration-300 glow-hover">
+                        Apply for Elite
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Capture Section -->
+    <section id="consultation" class="py-24 px-6 md:px-12 max-w-4xl mx-auto relative z-10">
+        <div class="glass-panel rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-2xl border border-neutral-800">
+            <div class="absolute -top-12 -left-12 w-48 h-48 bg-neonvolt-500/10 rounded-full blur-2xl"></div>
+            
+            <div class="text-center space-y-4 mb-10">
+                <span class="text-xs font-bold tracking-widest text-neonvolt-500 uppercase">Secure Admissions Slot</span>
+                <h2 class="font-display font-bold text-3xl text-white">Request Your Performance Consultation</h2>
+                <p class="text-sm text-neutral-400 max-w-lg mx-auto">
+                    Fill out the form below to register your current physique status. Our master registrar team will contact you back within 1 business day.
+                </p>
+            </div>
+
+            <!-- Client feedback notification banner -->
+            <div id="form-feedback" class="hidden mb-6 p-4 rounded-xl text-center font-bold text-sm"></div>
+
+            <form id="consultation-form" class="space-y-6" novalidate>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label for="applicant-name" class="text-xs font-bold uppercase tracking-wider text-neutral-400 block">Full Name *</label>
+                        <input type="text" id="applicant-name" class="w-full bg-neutral-900/60 border border-neutral-800 rounded-xl px-4 py-3 text-sm text-white focus:border-neonvolt-500 focus:outline-none transition-all" placeholder="John Doe" required>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="applicant-email" class="text-xs font-bold uppercase tracking-wider text-neutral-400 block">Email Address *</label>
+                        <input type="email" id="applicant-email" class="w-full bg-neutral-900/60 border border-neutral-800 rounded-xl px-4 py-3 text-sm text-white focus:border-neonvolt-500 focus:outline-none transition-all" placeholder="john@example.com" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label for="applicant-goal" class="text-xs font-bold uppercase tracking-wider text-neutral-400 block">Primary Fitness Goal *</label>
+                        <select id="applicant-goal" class="w-full bg-neutral-900/60 border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-300 focus:border-neonvolt-500 focus:outline-none transition-all" required>
+                            <option value="" disabled selected>Select goal</option>
+                            <option value="fat-loss">Accelerated Fat Loss</option>
+                            <option value="muscle-hypertrophy">Lean Muscle Hypertrophy</option>
+                            <option value="athletic-strength">Athletic Performance / Strength</option>
+                            <option value="body-recomp">Body Recomposition</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="applicant-experience" class="text-xs font-bold uppercase tracking-wider text-neutral-400 block">Training Experience *</label>
+                        <select id="applicant-experience" class="w-full bg-neutral-900/60 border border-neutral-800 rounded-xl px-4 py-3 text-sm text-neutral-300 focus:border-neonvolt-500 focus:outline-none transition-all" required>
+                            <option value="" disabled selected>Select level</option>
+                            <option value="beginner">Beginner (Under 1 year)</option>
+                            <option value="intermediate">Intermediate (1-3 years)</option>
+                            <option value="advanced">Advanced Lift Protocol (3+ years)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label for="applicant-details" class="text-xs font-bold uppercase tracking-wider text-neutral-400 block">Any current injuries or specific notes?</label>
+                    <textarea id="applicant-details" rows="3" class="w-full bg-neutral-900/60 border border-neutral-800 rounded-xl px-4 py-3 text-sm text-white focus:border-neonvolt-500 focus:outline-none transition-all" placeholder="e.g. Left shoulder mobility stiffness, recovering ACL..."></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-4 rounded-xl bg-neonvolt-500 hover:bg-neonvolt-600 text-obsidian-950 font-extrabold uppercase tracking-wider shadow-lg transition-all duration-300 glow-hover">
+                    Submit Admissions Inquiry
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Accordion FAQ Section -->
+    <section id="faq" class="py-24 px-6 md:px-12 max-w-4xl mx-auto">
+        <div class="text-center space-y-4 mb-16">
+            <span class="text-xs font-bold tracking-widest text-neonvolt-500 uppercase">Information Center</span>
+            <h2 class="font-display font-bold text-3xl text-white">Frequently Resolved Details</h2>
+        </div>
+
+        <div class="space-y-4">
+            <!-- Accordion FAQ Node 1 -->
+            <div class="faq-node border border-neutral-900 rounded-xl bg-neutral-900/20 overflow-hidden transition-all duration-300">
+                <button class="faq-trigger w-full flex items-center justify-between p-6 text-left text-neutral-200 hover:text-white focus:outline-none">
+                    <span class="font-bold text-sm md:text-base pr-4">How does the personal training accountability system function?</span>
+                    <span class="faq-icon-container w-6 h-6 rounded-full bg-neutral-800/40 flex items-center justify-center text-xs text-neutral-400 transition-transform duration-300">
+                        <i class="fa-solid fa-plus"></i>
+                    </span>
+                </button>
+                <div class="faq-body max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-neutral-900/10">
+                    <div class="p-6 pt-0 text-sm text-neutral-400 leading-relaxed border-t border-neutral-900/40">
+                        Our coaches track your progress daily using personalized tracking sheets. You upload photos, bodyweights, and workout logs directly, ensuring complete biomechanical feedback on your training form.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion FAQ Node 2 -->
+            <div class="faq-node border border-neutral-900 rounded-xl bg-neutral-900/20 overflow-hidden transition-all duration-300">
+                <button class="faq-trigger w-full flex items-center justify-between p-6 text-left text-neutral-200 hover:text-white focus:outline-none">
+                    <span class="font-bold text-sm md:text-base pr-4">Are the structural nutrition guides designed around dietary limits?</span>
+                    <span class="faq-icon-container w-6 h-6 rounded-full bg-neutral-800/40 flex items-center justify-center text-xs text-neutral-400 transition-transform duration-300">
+                        <i class="fa-solid fa-plus"></i>
+                    </span>
+                </button>
+                <div class="faq-body max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-neutral-900/10">
+                    <div class="p-6 pt-0 text-sm text-neutral-400 leading-relaxed border-t border-neutral-900/40">
+                        Absolutely. All meal schedules and daily caloric setups are tailored specifically around your parameters, whether you are vegetarian, vegan, lactose-intolerant, or have severe allergies.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accordion FAQ Node 3 -->
+            <div class="faq-node border border-neutral-900 rounded-xl bg-neutral-900/20 overflow-hidden transition-all duration-300">
+                <button class="faq-trigger w-full flex items-center justify-between p-6 text-left text-neutral-200 hover:text-white focus:outline-none">
+                    <span class="font-bold text-sm md:text-base pr-4">Can I suspend my coaching program while traveling?</span>
+                    <span class="faq-icon-container w-6 h-6 rounded-full bg-neutral-800/40 flex items-center justify-center text-xs text-neutral-400 transition-transform duration-300">
+                        <i class="fa-solid fa-plus"></i>
+                    </span>
+                </button>
+                <div class="faq-body max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-neutral-900/10">
+                    <div class="p-6 pt-0 text-sm text-neutral-400 leading-relaxed border-t border-neutral-900/40">
+                        Yes. Elite and Performance plans include holds of up to 14 days per calendar quarter to protect your training budget when your schedules require pauses.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-obsidian-900 border-t border-neutral-900 py-16 px-6 md:px-12 text-center text-neutral-500 text-sm space-y-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 border-b border-neutral-800/40 pb-10">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-lg bg-neonvolt-500 flex items-center justify-center text-obsidian-950 font-display font-bold text-lg">
+                    P
+                </div>
+                <span class="font-display font-bold text-lg tracking-tight text-white uppercase">
+                    Power<span class="text-neonvolt-500">Fit</span>
+                </span>
+            </a>
+            <div class="flex flex-wrap justify-center gap-6 text-xs font-semibold uppercase tracking-wider text-neutral-400">
+                <a href="#features" class="hover:text-neonvolt-500">Specs</a>
+                <a href="#interactive-preview" class="hover:text-neonvolt-500">Mockup</a>
+                <a href="#estimator" class="hover:text-neonvolt-500">Estimator</a>
+                <a href="#pricing" class="hover:text-neonvolt-500">Plans</a>
+                <a href="#consultation" class="hover:text-neonvolt-500">Inquire</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-xs gap-4">
+            <p>© 2026 PowerFit Elite personal coaching. Designed and coded as a modern interactive portfolio centerpiece.</p>
+            <div class="flex items-center gap-4 text-neutral-400">
+                <a href="#" class="hover:text-neonvolt-500" aria-label="Instagram"><i class="fa-brands fa-instagram text-base"></i></a>
+                <a href="#" class="hover:text-neonvolt-500" aria-label="YouTube"><i class="fa-brands fa-youtube text-base"></i></a>
+                <a href="#" class="hover:text-neonvolt-500" aria-label="Twitter"><i class="fa-brands fa-x-twitter text-base"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================
+         VANILLA JAVASCRIPT SYSTEM CONTROLLERS
+         ========================================= -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Navigation Header Scroll Effect
+            const header = document.getElementById('global-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 40) {
+                    header.classList.add('glass-panel', 'shadow-lg');
+                    header.classList.remove('py-5');
+                    header.classList.add('py-3.5');
+                } else {
+                    header.classList.remove('glass-panel', 'shadow-lg');
+                    header.classList.remove('py-3.5');
+                    header.classList.add('py-5');
+                }
+            });
+
+            // 2. Mobile Responsive Menu Drawer Action
+            const mobileToggle = document.getElementById('mobile-toggle');
+            const mobileClose = document.getElementById('mobile-close');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function openDrawer() {
+                mobileDrawer.classList.remove('translate-x-full');
+            }
+
+            function closeDrawer() {
+                mobileDrawer.classList.add('translate-x-full');
+            }
+
+            if (mobileToggle) mobileToggle.addEventListener('click', openDrawer);
+            if (mobileClose) mobileClose.addEventListener('click', closeDrawer);
+            mobileLinks.forEach(link => link.addEventListener('click', closeDrawer));
+
+            // 3. Dynamic Interactive Hero Dashboard Mockup Tabs
+            const tabBtnProgress = document.getElementById('tab-progress');
+            const tabBtnWorkouts = document.getElementById('tab-workouts');
+            const tabBtnMacros = document.getElementById('tab-macros');
+
+            const viewProgress = document.getElementById('view-progress');
+            const viewWorkouts = document.getElementById('view-workouts');
+            const viewMacros = document.getElementById('view-macros');
+
+            const tabButtons = [tabBtnProgress, tabBtnWorkouts, tabBtnMacros];
+            const tabViews = [viewProgress, viewWorkouts, viewMacros];
+
+            function switchDashboardTab(activeBtn, targetView) {
+                // Adjust active styling states
+                tabButtons.forEach(btn => {
+                    if (btn) {
+                        btn.classList.remove('text-obsidian-950', 'bg-neonvolt-500');
+                        btn.classList.add('text-neutral-400', 'bg-neutral-900/60');
+                    }
+                });
+                
+                activeBtn.classList.remove('text-neutral-400', 'bg-neutral-900/60');
+                activeBtn.classList.add('text-obsidian-950', 'bg-neonvolt-500');
+
+                // Adjust Visibility States of sub-windows
+                tabViews.forEach(view => {
+                    if (view) view.classList.add('hidden');
+                });
+                targetView.classList.remove('hidden');
+            }
+
+            if (tabBtnProgress) {
+                tabBtnProgress.addEventListener('click', () => switchDashboardTab(tabBtnProgress, viewProgress));
+            }
+            if (tabBtnWorkouts) {
+                tabBtnWorkouts.addEventListener('click', () => switchDashboardTab(tabBtnWorkouts, viewWorkouts));
+            }
+            if (tabBtnMacros) {
+                tabBtnMacros.addEventListener('click', () => switchDashboardTab(tabBtnMacros, viewMacros));
+            }
+
+            // 4. Interactive Baseline Calculator Widget (BMI & Dynamic TDEE Calories)
+            const sliderWeight = document.getElementById('slider-weight');
+            const sliderHeight = document.getElementById('slider-height');
+            const selectorActivity = document.getElementById('activity-multiplier');
+
+            const weightValDisplay = document.getElementById('weight-display');
+            const heightValDisplay = document.getElementById('height-display');
+
+            const outputBmi = document.getElementById('assessment-bmi');
+            const outputClass = document.getElementById('assessment-class');
+            const outputCalories = document.getElementById('assessment-calories');
+
+            function recalculatePhysiqueMetrics() {
+                const w = parseFloat(sliderWeight.value);
+                const h = parseFloat(sliderHeight.value);
+                const multi = parseFloat(selectorActivity.value);
+
+                // Print updated slider display labels
+                weightValDisplay.innerText = `${w} kg`;
+                heightValDisplay.innerText = `${h} cm`;
+
+                // Calculate Body Mass Index (BMI)
+                const heightMeters = h / 100;
+                const bmi = (w / (heightMeters * heightMeters)).toFixed(1);
+                outputBmi.innerText = bmi;
+
+                // Set semantic BMI text output classifications
+                if (bmi < 18.5) {
+                    outputClass.innerText = 'Underweight Target';
+                    outputClass.className = 'text-xs font-semibold text-yellow-500 uppercase tracking-wider';
+                } else if (bmi >= 18.5 && bmi <= 24.9) {
+                    outputClass.innerText = 'Normal / Optimal Range';
+                    outputClass.className = 'text-xs font-semibold text-emerald-400 uppercase tracking-wider';
+                } else if (bmi >= 25 && bmi <= 29.9) {
+                    outputClass.innerText = 'Overweight Baseline';
+                    outputClass.className = 'text-xs font-semibold text-yellow-500 uppercase tracking-wider';
+                } else {
+                    outputClass.innerText = 'High Metabolic Risk';
+                    outputClass.className = 'text-xs font-semibold text-red-500 uppercase tracking-wider';
+                }
+
+                // Estimated Baseline TDEE algorithm (Harris-Benedict estimation baseline)
+                // Using 10*w + 6.25*h - 5*age + 5(male average benchmark factor)
+                const bmrEst = (10 * w) + (6.25 * h) - (5 * 28) + 5;
+                const tdee = Math.round(bmrEst * multi);
+                outputCalories.innerHTML = `${tdee.toLocaleString()} <span class="text-xs text-neutral-400 font-normal">kcal</span>`;
+            }
+
+            if (sliderWeight && sliderHeight && selectorActivity) {
+                sliderWeight.addEventListener('input', recalculatePhysiqueMetrics);
+                sliderHeight.addEventListener('input', recalculatePhysiqueMetrics);
+                selectorActivity.addEventListener('change', recalculatePhysiqueMetrics);
+                
+                // Set baseline output on DOM boot sequence
+                recalculatePhysiqueMetrics();
+            }
+
+            // 5. Dynamic Billing Switcher
+            const billingSwitch = document.getElementById('billing-switch');
+            const toggleDot = document.getElementById('billing-switch-toggle');
+            const monthlyLabel = document.getElementById('billing-monthly-label');
+            const yearlyLabel = document.getElementById('billing-yearly-label');
+
+            const priceTier1 = document.getElementById('price-tier1');
+            const priceTier2 = document.getElementById('price-tier2');
+
+            let isYearlyInterval = false;
+
+            function toggleBillingInterval() {
+                isYearlyInterval = !isYearlyInterval;
+
+                if (isYearlyInterval) {
+                    toggleDot.classList.add('translate-x-6');
+                    yearlyLabel.classList.remove('text-neutral-400');
+                    yearlyLabel.classList.add('text-neonvolt-500');
+                    monthlyLabel.classList.remove('text-neonvolt-500');
+                    monthlyLabel.classList.add('text-neutral-400');
+
+                    // Set simulated yearly saving rate price displays
+                    priceTier1.innerText = '119'; // 20% discount on 149
+                    priceTier2.innerText = '239'; // 20% discount on 299
+                } else {
+                    toggleDot.classList.remove('translate-x-6');
+                    monthlyLabel.classList.remove('text-neutral-400');
+                    monthlyLabel.classList.add('text-neonvolt-500');
+                    yearlyLabel.classList.remove('text-neonvolt-500');
+                    yearlyLabel.classList.add('text-neutral-400');
+
+                    // Restore normal monthly rates
+                    priceTier1.innerText = '149';
+                    priceTier2.innerText = '299';
+                }
+            }
+
+            if (billingSwitch) {
+                billingSwitch.addEventListener('click', toggleBillingInterval);
+            }
+
+            // 6. Expandable Accordion Frequently Asked Questions
+            const faqNodes = document.querySelectorAll('.faq-node');
+
+            faqNodes.forEach(node => {
+                const trigger = node.querySelector('.faq-trigger');
+                const body = node.querySelector('.faq-body');
+                const iconContainer = node.querySelector('.faq-icon-container');
+
+                trigger.addEventListener('click', () => {
+                    const isNowOpen = node.classList.contains('active-node');
+
+                    // Close all active faq nodes first
+                    faqNodes.forEach(item => {
+                        item.classList.remove('active-node');
+                        item.querySelector('.faq-body').style.maxHeight = null;
+                        item.querySelector('.faq-icon-container').innerHTML = '<i class="fa-solid fa-plus"></i>';
+                    });
+
+                    // Toggle active item
+                    if (!isNowOpen) {
+                        node.classList.add('active-node');
+                        body.style.maxHeight = body.scrollHeight + "px";
+                        iconContainer.innerHTML = '<i class="fa-solid fa-minus"></i>';
+                    }
+                });
+            });
+
+            // 7. Dynamic Form Handler with Interactive Validation Feedback
+            const leadForm = document.getElementById('consultation-form');
+            const feedbackPanel = document.getElementById('form-feedback');
+
+            if (leadForm) {
+                leadForm.addEventListener('submit', (event) => {
+                    event.preventDefault();
+
+                    const nameVal = document.getElementById('applicant-name');
+                    const emailVal = document.getElementById('applicant-email');
+                    const goalVal = document.getElementById('applicant-goal');
+                    const expVal = document.getElementById('applicant-experience');
+
+                    let errors = [];
+
+                    // Soft validations
+                    if (nameVal.value.trim().length < 2) {
+                        errors.push("Please provide your full name.");
+                        nameVal.classList.add('border-red-500');
+                    } else {
+                        nameVal.classList.remove('border-red-500');
+                    }
+
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(emailVal.value.trim())) {
+                        errors.push("Please provide a valid email address.");
+                        emailVal.classList.add('border-red-500');
+                    } else {
+                        emailVal.classList.remove('border-red-500');
+                    }
+
+                    if (!goalVal.value) {
+                        errors.push("Please select your primary fitness goal.");
+                        goalVal.classList.add('border-red-500');
+                    } else {
+                        goalVal.classList.remove('border-red-500');
+                    }
+
+                    if (!expVal.value) {
+                        errors.push("Please select your training experience.");
+                        expVal.classList.add('border-red-500');
+                    } else {
+                        expVal.classList.remove('border-red-500');
+                    }
+
+                    feedbackPanel.classList.remove('hidden', 'bg-red-500/10', 'text-red-400', 'bg-emerald-500/10', 'text-emerald-400');
+
+                    if (errors.length > 0) {
+                        feedbackPanel.classList.add('bg-red-500/10', 'text-red-400');
+                        feedbackPanel.innerHTML = `Submission Failed:<br>${errors.join("<br>")}`;
+                    } else {
+                        feedbackPanel.classList.add('bg-emerald-500/10', 'text-emerald-400');
+                        feedbackPanel.innerHTML = `Admissions Inquiry Submitted Successfully! Thank you, ${nameVal.value}. We'll email you back within 24 hours.`;
+                        
+                        // Reset all forms
+                        leadForm.reset();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
